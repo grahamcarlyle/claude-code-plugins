@@ -47,6 +47,7 @@ If no argument is provided, ask the user which operation they want.
 
 2. **Read the plan content**
    - Read the plan file to get its full content.
+   - Check for a `<!-- project-plan-source: ... -->` comment at the top of the plan content. If present, parse out the original filename and status to use as defaults in the steps below, then strip the comment from the content before saving.
 
 3. **Determine the plans directory**
    - Look for an existing `plans/` directory in the project root.
@@ -54,11 +55,13 @@ If no argument is provided, ask the user which operation they want.
 
 4. **Choose a filename**
    - Ask the user what they want to name the plan file.
-   - Default suggestion: derive from the plan title or first heading if present, converted to kebab-case with a `.md` extension (e.g., `add-authentication.md`).
+   - If this plan was loaded from a project plan file (detected via the source comment in step 2), default to the original filename.
+   - Otherwise, derive from the plan title or first heading if present, converted to kebab-case with a `.md` extension (e.g., `add-authentication.md`).
 
 5. **Set status (optional)**
    - Ask the user if they want to set a status for the plan (`draft`, `rejected`, `implemented`, or none).
-   - Default suggestion: `draft`.
+   - If this plan was loaded from a project plan file with an existing status, default to that original status.
+   - Otherwise, default suggestion: `draft`.
    - If the user chooses a status, add or update YAML front matter at the top of the plan content with the `status` field. If the plan already has front matter, merge the status into it.
 
 6. **Write the plan file**
@@ -79,8 +82,13 @@ If no argument is provided, ask the user which operation they want.
    - If the plan has YAML front matter with a `status` field, note it. If the status is `rejected`, warn the user that this plan was previously rejected and confirm they want to proceed. If `implemented`, inform them this plan was already implemented.
 
 3. **Present the plan and enter plan mode**
-   - Strip the YAML front matter before writing to the plan mode plan file (plan mode does not use front matter).
-   - Display the loaded plan content to the user.
+   - Strip the YAML front matter from the plan body before writing to the plan mode plan file (plan mode does not use front matter).
+   - Prepend a metadata comment to the plan content written to the plan mode file so it can be recovered during save:
+     ```
+     <!-- project-plan-source: <original-filename>, status: <status-or-none> -->
+     ```
+     For example: `<!-- project-plan-source: add-auth.md, status: draft -->`
+   - Display the loaded plan content to the user (without the metadata comment).
    - Write the plan content to the plan mode plan file so that Claude's plan mode can continue working with it.
    - Tell the user: "This plan has been loaded as the basis for planning. You can now review, modify, or approve it. Use plan mode to continue refining this plan."
 
