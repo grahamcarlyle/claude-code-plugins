@@ -7,6 +7,27 @@ description: Manage project plans with Claude's plan mode. Use when the user wan
 
 Synchronise Claude plan mode plans with project plan markdown files.
 
+## Plan file format
+
+Plan files are markdown documents with optional YAML front matter for metadata.
+
+### Status field
+
+Plans can optionally include a `status` field in YAML front matter:
+
+```yaml
+---
+status: draft
+---
+```
+
+Valid values:
+- **`draft`** — Plan is being developed or under review
+- **`rejected`** — Plan was considered and declined
+- **`implemented`** — Plan has been carried out
+
+The status field is entirely optional. A plan with no front matter or no status field is treated as having no status set.
+
 ## Commands
 
 This skill supports two operations, passed as arguments:
@@ -35,11 +56,16 @@ If no argument is provided, ask the user which operation they want.
    - Ask the user what they want to name the plan file.
    - Default suggestion: derive from the plan title or first heading if present, converted to kebab-case with a `.md` extension (e.g., `add-authentication.md`).
 
-5. **Write the plan file**
-   - Write the plan content to `plans/<chosen-name>.md` in the project.
+5. **Set status (optional)**
+   - Ask the user if they want to set a status for the plan (`draft`, `rejected`, `implemented`, or none).
+   - Default suggestion: `draft`.
+   - If the user chooses a status, add or update YAML front matter at the top of the plan content with the `status` field. If the plan already has front matter, merge the status into it.
 
-6. **Confirm to the user**
-   - Show the path of the saved file and a brief summary of the plan.
+6. **Write the plan file**
+   - Write the plan content (with front matter if applicable) to `plans/<chosen-name>.md` in the project.
+
+7. **Confirm to the user**
+   - Show the path of the saved file, its status (if set), and a brief summary of the plan.
 
 ### Load: Use a project plan as the basis for Claude plan mode
 
@@ -50,8 +76,10 @@ If no argument is provided, ask the user which operation they want.
 
 2. **Read the plan file content**
    - Read the selected markdown file.
+   - If the plan has YAML front matter with a `status` field, note it. If the status is `rejected`, warn the user that this plan was previously rejected and confirm they want to proceed. If `implemented`, inform them this plan was already implemented.
 
 3. **Present the plan and enter plan mode**
+   - Strip the YAML front matter before writing to the plan mode plan file (plan mode does not use front matter).
    - Display the loaded plan content to the user.
    - Write the plan content to the plan mode plan file so that Claude's plan mode can continue working with it.
    - Tell the user: "This plan has been loaded as the basis for planning. You can now review, modify, or approve it. Use plan mode to continue refining this plan."
