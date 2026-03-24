@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "skill_name": "project-plan",
+    "skill_path": "/Users/grahamcarlyle/code/personal/experiments/project-plan-skill/skills/project-plan",
+    "executor_model": "claude-opus-4-6",
+    "analyzer_model": "claude-opus-4-6",
+    "timestamp": "2026-03-24T15:43:50Z",
+    "evals_run": [1, 2, 3, 4],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 1, "eval_name": "list-plans", "configuration": "with_skill", "run_number": 1,
+      "result": {"pass_rate": 1.0, "passed": 4, "failed": 0, "total": 4, "time_seconds": 28.1, "tokens": 12046, "tool_calls": 9, "errors": 0},
+      "expectations": [
+        {"text": "Lists all 4 plan files from the plans/ directory", "passed": true, "evidence": "Response shows all 4 files"},
+        {"text": "Shows correct status for each plan", "passed": true, "evidence": "draft, implemented, rejected, — shown correctly"},
+        {"text": "Shows the first heading or title of each plan", "passed": true, "evidence": "All 4 titles shown"},
+        {"text": "Output is formatted as a readable list or table", "passed": true, "evidence": "Aligned table format"}
+      ]
+    },
+    {
+      "eval_id": 1, "eval_name": "list-plans", "configuration": "without_skill", "run_number": 1,
+      "result": {"pass_rate": 1.0, "passed": 4, "failed": 0, "total": 4, "time_seconds": 39.0, "tokens": 12725, "tool_calls": 9, "errors": 0},
+      "expectations": [
+        {"text": "Lists all 4 plan files from the plans/ directory", "passed": true, "evidence": "Lists all 4 files, but says list isn't a recognised command"},
+        {"text": "Shows correct status for each plan", "passed": true, "evidence": "Statuses shown correctly"},
+        {"text": "Shows the first heading or title of each plan", "passed": true, "evidence": "Titles shown correctly"},
+        {"text": "Output is formatted as a readable list or table", "passed": true, "evidence": "Markdown table, but with error prefix"}
+      ]
+    },
+    {
+      "eval_id": 2, "eval_name": "load-bare-name", "configuration": "with_skill", "run_number": 1,
+      "result": {"pass_rate": 1.0, "passed": 5, "failed": 0, "total": 5, "time_seconds": 36.1, "tokens": 11862, "tool_calls": 7, "errors": 0},
+      "expectations": [
+        {"text": "Resolves bare name to plans/add-auth.md", "passed": true, "evidence": "Metadata references plans/add-auth.md"},
+        {"text": "Strips YAML front matter", "passed": true, "evidence": "No front matter in plan mode content"},
+        {"text": "Metadata comment stores full relative path", "passed": true, "evidence": "<!-- project-plan-source: plans/add-auth.md, status: draft -->"},
+        {"text": "Displays plan content without metadata comment", "passed": true, "evidence": "Response shows clean plan content"},
+        {"text": "Preserves existing heading", "passed": true, "evidence": "# Add Authentication preserved"}
+      ]
+    },
+    {
+      "eval_id": 2, "eval_name": "load-bare-name", "configuration": "without_skill", "run_number": 1,
+      "result": {"pass_rate": 0.8, "passed": 4, "failed": 1, "total": 5, "time_seconds": 36.6, "tokens": 12169, "tool_calls": 7, "errors": 0},
+      "expectations": [
+        {"text": "Resolves bare name to plans/add-auth.md", "passed": true, "evidence": "Found and loaded the file"},
+        {"text": "Strips YAML front matter", "passed": true, "evidence": "No front matter in plan mode content"},
+        {"text": "Metadata comment stores full relative path", "passed": false, "evidence": "Stores add-auth.md not plans/add-auth.md — loses path info"},
+        {"text": "Displays plan content without metadata comment", "passed": true, "evidence": "Response shows clean content"},
+        {"text": "Preserves existing heading", "passed": true, "evidence": "# Add Authentication preserved"}
+      ]
+    },
+    {
+      "eval_id": 3, "eval_name": "load-rejected-plan", "configuration": "with_skill", "run_number": 1,
+      "result": {"pass_rate": 1.0, "passed": 3, "failed": 0, "total": 3, "time_seconds": 42.2, "tokens": 12505, "tool_calls": 9, "errors": 0},
+      "expectations": [
+        {"text": "Warns about rejected status", "passed": true, "evidence": "Warning message shown"},
+        {"text": "Asks for confirmation", "passed": true, "evidence": "Asks user to confirm"},
+        {"text": "Strips front matter and adds metadata if proceeding", "passed": true, "evidence": "Prepared content shown"}
+      ]
+    },
+    {
+      "eval_id": 3, "eval_name": "load-rejected-plan", "configuration": "without_skill", "run_number": 1,
+      "result": {"pass_rate": 1.0, "passed": 3, "failed": 0, "total": 3, "time_seconds": 35.8, "tokens": 12414, "tool_calls": 7, "errors": 0},
+      "expectations": [
+        {"text": "Warns about rejected status", "passed": true, "evidence": "Warning shown"},
+        {"text": "Asks for confirmation", "passed": true, "evidence": "Asks user to confirm"},
+        {"text": "Strips front matter and adds metadata if proceeding", "passed": true, "evidence": "Prepared content shown"}
+      ]
+    },
+    {
+      "eval_id": 4, "eval_name": "load-nondefault-path", "configuration": "with_skill", "run_number": 1,
+      "result": {"pass_rate": 1.0, "passed": 4, "failed": 0, "total": 4, "time_seconds": 31.3, "tokens": 11811, "tool_calls": 6, "errors": 0},
+      "expectations": [
+        {"text": "Loads from non-default path", "passed": true, "evidence": "Content matches docs/plans/design.md"},
+        {"text": "Metadata stores full relative path docs/plans/design.md", "passed": true, "evidence": "<!-- project-plan-source: docs/plans/design.md, status: draft -->"},
+        {"text": "Strips YAML front matter", "passed": true, "evidence": "No front matter in output"},
+        {"text": "Displays plan content", "passed": true, "evidence": "Content shown to user"}
+      ]
+    },
+    {
+      "eval_id": 4, "eval_name": "load-nondefault-path", "configuration": "without_skill", "run_number": 1,
+      "result": {"pass_rate": 0.75, "passed": 3, "failed": 1, "total": 4, "time_seconds": 34.1, "tokens": 12313, "tool_calls": 6, "errors": 0},
+      "expectations": [
+        {"text": "Loads from non-default path", "passed": true, "evidence": "Content matches docs/plans/design.md"},
+        {"text": "Metadata stores full relative path docs/plans/design.md", "passed": false, "evidence": "Stores design.md not docs/plans/design.md — re-save would go to wrong location"},
+        {"text": "Strips YAML front matter", "passed": true, "evidence": "No front matter in output"},
+        {"text": "Displays plan content", "passed": true, "evidence": "Content shown to user"}
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 1.0, "stddev": 0.0, "min": 1.0, "max": 1.0},
+      "time_seconds": {"mean": 34.4, "stddev": 5.1, "min": 28.1, "max": 42.2},
+      "tokens": {"mean": 12056, "stddev": 267, "min": 11811, "max": 12505}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.89, "stddev": 0.11, "min": 0.75, "max": 1.0},
+      "time_seconds": {"mean": 36.4, "stddev": 1.8, "min": 34.1, "max": 39.0},
+      "tokens": {"mean": 12405, "stddev": 216, "min": 12169, "max": 12725}
+    },
+    "delta": {
+      "pass_rate": "+0.11",
+      "time_seconds": "-2.0",
+      "tokens": "-349"
+    }
+  },
+  "notes": [
+    "Eval 3 (load-rejected) passes 100% in both configurations — rejected warning behavior is unchanged between versions",
+    "The new skill's key improvements show in evals 2 and 4: full relative path storage in metadata comments",
+    "Eval 1 (list) passes technically for both, but the old skill gives an error message before listing — worse UX",
+    "New skill is slightly faster and uses fewer tokens on average"
+  ]
+}

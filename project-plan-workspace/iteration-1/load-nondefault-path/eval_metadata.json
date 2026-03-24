@@ -1,0 +1,11 @@
+{
+  "eval_id": 4,
+  "eval_name": "load-nondefault-path",
+  "prompt": "/project-plan load docs/plans/design.md",
+  "assertions": [
+    "Loads the file from docs/plans/design.md (non-default location)",
+    "Metadata comment stores the full relative path: <!-- project-plan-source: docs/plans/design.md, status: draft -->",
+    "Strips YAML front matter before writing to plan mode",
+    "Displays the plan content to the user"
+  ]
+}

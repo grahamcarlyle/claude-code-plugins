@@ -1,0 +1,53 @@
+{
+  "skill_name": "project-plan",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "/project-plan list",
+      "expected_output": "A list of all 4 plan files in plans/ showing their filename, status, and first heading. add-auth (draft), migrate-db (implemented), old-api-redesign (rejected), new-api (no status).",
+      "files": ["evals/fixtures/plans/add-auth.md", "evals/fixtures/plans/migrate-db.md", "evals/fixtures/plans/old-api-redesign.md", "evals/fixtures/plans/new-api.md"],
+      "expectations": [
+        "Lists all 4 plan files from the plans/ directory",
+        "Shows status for each plan: add-auth is draft, migrate-db is implemented, old-api-redesign is rejected, new-api has no status",
+        "Shows the first heading or title of each plan",
+        "Output is formatted as a readable list or table"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "/project-plan load add-auth",
+      "expected_output": "Loads plans/add-auth.md despite the user only providing the bare name 'add-auth' (no path prefix, no .md). Resolves to plans/add-auth.md, strips YAML front matter, adds metadata comment, displays plan content, enters plan mode.",
+      "files": ["evals/fixtures/plans/add-auth.md"],
+      "expectations": [
+        "Resolves bare name 'add-auth' to plans/add-auth.md",
+        "Strips YAML front matter before writing to plan mode",
+        "Adds metadata comment with original path and status: <!-- project-plan-source: plans/add-auth.md, status: draft -->",
+        "Displays the plan content to the user (without metadata comment)",
+        "Keeps the existing top-level heading '# Add Authentication'"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "/project-plan load old-api-redesign",
+      "expected_output": "Warns the user that this plan was previously rejected before loading it. Asks for confirmation to proceed.",
+      "files": ["evals/fixtures/plans/old-api-redesign.md"],
+      "expectations": [
+        "Warns the user that the plan status is 'rejected'",
+        "Asks for confirmation before proceeding with the load",
+        "If proceeding, strips YAML front matter and adds metadata comment"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "/project-plan load docs/plans/design.md",
+      "expected_output": "Loads the plan from the non-default path docs/plans/design.md. The metadata comment should store the full relative path so re-saving defaults back to docs/plans/design.md.",
+      "files": ["evals/fixtures/docs/plans/design.md"],
+      "expectations": [
+        "Loads the file from docs/plans/design.md (non-default location)",
+        "Metadata comment stores the full relative path: <!-- project-plan-source: docs/plans/design.md, status: draft -->",
+        "Strips YAML front matter before writing to plan mode",
+        "Displays the plan content to the user"
+      ]
+    }
+  ]
+}

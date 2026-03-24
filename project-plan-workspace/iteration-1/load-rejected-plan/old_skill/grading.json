@@ -1,0 +1,8 @@
+{
+  "expectations": [
+    {"text": "Warns the user that the plan status is 'rejected'", "passed": true, "evidence": "Response warns about the rejected status"},
+    {"text": "Asks for confirmation before proceeding with the load", "passed": true, "evidence": "Response asks for confirmation"},
+    {"text": "If proceeding, strips YAML front matter and adds metadata comment", "passed": true, "evidence": "Plan mode content shows stripped front matter with metadata comment"}
+  ],
+  "summary": {"passed": 3, "failed": 0, "total": 3, "pass_rate": 1.0}
+}

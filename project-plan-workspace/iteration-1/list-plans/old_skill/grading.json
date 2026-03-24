@@ -1,0 +1,9 @@
+{
+  "expectations": [
+    {"text": "Lists all 4 plan files from the plans/ directory", "passed": true, "evidence": "Lists all 4 files in a table, though prefixed with a warning that list is not a recognised command"},
+    {"text": "Shows status for each plan: add-auth is draft, migrate-db is implemented, old-api-redesign is rejected, new-api has no status", "passed": true, "evidence": "Shows draft, implemented, rejected, (none) correctly"},
+    {"text": "Shows the first heading or title of each plan", "passed": true, "evidence": "Shows all 4 titles correctly"},
+    {"text": "Output is formatted as a readable list or table", "passed": true, "evidence": "Formatted as a markdown table, but with an error message prefix saying list isn't supported"}
+  ],
+  "summary": {"passed": 4, "failed": 0, "total": 4, "pass_rate": 1.0}
+}

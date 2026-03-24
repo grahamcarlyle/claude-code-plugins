@@ -1,0 +1,9 @@
+{
+  "expectations": [
+    {"text": "Lists all 4 plan files from the plans/ directory", "passed": true, "evidence": "Response shows add-auth.md, migrate-db.md, new-api.md, old-api-redesign.md"},
+    {"text": "Shows status for each plan: add-auth is draft, migrate-db is implemented, old-api-redesign is rejected, new-api has no status", "passed": true, "evidence": "Shows [draft], [implemented], [rejected], and — respectively"},
+    {"text": "Shows the first heading or title of each plan", "passed": true, "evidence": "Shows Add Authentication, Migrate Database to Postgres, New API Design, Old API Redesign"},
+    {"text": "Output is formatted as a readable list or table", "passed": true, "evidence": "Formatted as an aligned table matching the skill's example format"}
+  ],
+  "summary": {"passed": 4, "failed": 0, "total": 4, "pass_rate": 1.0}
+}

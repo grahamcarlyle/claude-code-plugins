@@ -1,0 +1,11 @@
+{
+  "eval_id": 1,
+  "eval_name": "list-plans",
+  "prompt": "/project-plan list",
+  "assertions": [
+    "Lists all 4 plan files from the plans/ directory",
+    "Shows status for each plan: add-auth is draft, migrate-db is implemented, old-api-redesign is rejected, new-api has no status",
+    "Shows the first heading or title of each plan",
+    "Output is formatted as a readable list or table"
+  ]
+}

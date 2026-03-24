@@ -1,0 +1,10 @@
+{
+  "expectations": [
+    {"text": "Resolves bare name 'add-auth' to plans/add-auth.md", "passed": true, "evidence": "Agent found and loaded plans/add-auth.md from the bare name"},
+    {"text": "Strips YAML front matter before writing to plan mode", "passed": true, "evidence": "Plan mode content has no YAML front matter"},
+    {"text": "Adds metadata comment with original path and status: <!-- project-plan-source: plans/add-auth.md, status: draft -->", "passed": false, "evidence": "Metadata comment is <!-- project-plan-source: add-auth.md, status: draft --> — uses just filename, not the full relative path plans/add-auth.md"},
+    {"text": "Displays the plan content to the user (without metadata comment)", "passed": true, "evidence": "Response shows plan content without the HTML comment"},
+    {"text": "Keeps the existing top-level heading '# Add Authentication'", "passed": true, "evidence": "Heading preserved as # Add Authentication"}
+  ],
+  "summary": {"passed": 4, "failed": 1, "total": 5, "pass_rate": 0.8}
+}
