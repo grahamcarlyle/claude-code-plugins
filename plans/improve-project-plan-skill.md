@@ -32,11 +32,15 @@ Rewrite `skills/project-plan/SKILL.md` (~108 lines → ~85 lines) with these imp
 ### 5. Improve triggering
 - Expand description to trigger on natural language: "save this plan", "load the auth plan", "what plans do we have"
 
-### 6. Flexible file paths on load
-- Accept `plans/foo.md`, `foo.md`, or bare `foo` — all resolve to `plans/foo.md`
+### 6. Flexible file paths (load and save)
+- Default directory is `plans/` but honour explicit paths the user provides
+- On load: accept `plans/foo.md`, `foo.md`, bare `foo`, or a full path like `docs/plans/foo.md`
+- On save: if the source comment contains a path outside `plans/`, default to that path; otherwise default to `plans/`
+- On list: scan `plans/` by default, accept an optional path argument to scan elsewhere
+- When resolving ambiguous names (bare `foo`), look in `plans/` first
 
 ### Preserved mechanisms
-- `<!-- project-plan-source: filename, status: X -->` metadata comment for round-tripping
+- `<!-- project-plan-source: path, status: X -->` metadata comment for round-tripping (store relative path, not just filename, so non-default locations survive round-trips)
 - Heading-from-filename derivation for status line naming
 - YAML front matter with `status` field
 - Strip front matter on load; strip metadata comment on save
@@ -55,3 +59,4 @@ After implementing, run these test prompts via skill-creator eval to verify real
 4. **List plans** — `/project-plan list` with 2-3 plans on disk (mixed statuses). Should show all with status and title.
 5. **Load a rejected plan** — Load a plan with `status: rejected`. Should warn before proceeding.
 6. **Save with overwrite** — Save to a filename that already exists. Should warn and confirm.
+7. **Non-default path** — `/project-plan load docs/plans/design.md`. Should load from the explicit path, and re-saving should default back to `docs/plans/design.md`.
