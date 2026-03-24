@@ -83,11 +83,15 @@ If no argument is provided, ask the user which operation they want.
 
 3. **Present the plan and enter plan mode**
    - Strip the YAML front matter from the plan body before writing to the plan mode plan file (plan mode does not use front matter).
+   - Ensure the plan has a top-level heading:
+     - If the plan content already has a top-level `#` heading, keep it as-is.
+     - If the plan content does **not** have a top-level `#` heading, add one derived from the original filename: strip the `.md` extension, convert kebab-case to title case (e.g., `make-entities-part-of-component-targeting.md` → `# Make Entities Part of Component Targeting`).
    - Prepend a metadata comment to the plan content written to the plan mode file so it can be recovered during save:
      ```
      <!-- project-plan-source: <original-filename>, status: <status-or-none> -->
      ```
      For example: `<!-- project-plan-source: add-auth.md, status: draft -->`
+   - The plan content written to the plan mode file should be ordered: metadata comment, then heading, then plan body.
    - Display the loaded plan content to the user (without the metadata comment).
    - Write the plan content to the plan mode plan file so that Claude's plan mode can continue working with it.
    - Tell the user: "This plan has been loaded as the basis for planning. You can now review, modify, or approve it. Use plan mode to continue refining this plan."
