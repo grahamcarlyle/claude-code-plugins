@@ -1,0 +1,13 @@
+{
+  "name": "claude-code-plugins",
+  "owner": {
+    "name": "Graham Carlyle"
+  },
+  "plugins": [
+    {
+      "name": "project-plan",
+      "source": "./project-plan",
+      "description": "Sync Claude plan-mode plans with markdown files in your project"
+    }
+  ]
+}
