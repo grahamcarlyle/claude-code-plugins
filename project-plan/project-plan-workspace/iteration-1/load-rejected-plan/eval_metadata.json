@@ -1,0 +1,10 @@
+{
+  "eval_id": 3,
+  "eval_name": "load-rejected-plan",
+  "prompt": "/project-plan load old-api-redesign",
+  "assertions": [
+    "Warns the user that the plan status is 'rejected'",
+    "Asks for confirmation before proceeding with the load",
+    "If proceeding, strips YAML front matter and adds metadata comment"
+  ]
+}

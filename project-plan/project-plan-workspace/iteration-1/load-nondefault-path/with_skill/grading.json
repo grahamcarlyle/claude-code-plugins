@@ -1,0 +1,9 @@
+{
+  "expectations": [
+    {"text": "Loads the file from docs/plans/design.md (non-default location)", "passed": true, "evidence": "Plan content matches docs/plans/design.md file contents"},
+    {"text": "Metadata comment stores the full relative path: <!-- project-plan-source: docs/plans/design.md, status: draft -->", "passed": true, "evidence": "First line is <!-- project-plan-source: docs/plans/design.md, status: draft -->"},
+    {"text": "Strips YAML front matter before writing to plan mode", "passed": true, "evidence": "No YAML front matter in plan mode content"},
+    {"text": "Displays the plan content to the user", "passed": true, "evidence": "Response shows the plan content"}
+  ],
+  "summary": {"passed": 4, "failed": 0, "total": 4, "pass_rate": 1.0}
+}

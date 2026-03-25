@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "eval_name": "load-bare-name",
+  "prompt": "/project-plan load add-auth",
+  "assertions": [
+    "Resolves bare name 'add-auth' to plans/add-auth.md",
+    "Strips YAML front matter before writing to plan mode",
+    "Adds metadata comment with original path and status: <!-- project-plan-source: plans/add-auth.md, status: draft -->",
+    "Displays the plan content to the user (without metadata comment)",
+    "Keeps the existing top-level heading '# Add Authentication'"
+  ]
+}

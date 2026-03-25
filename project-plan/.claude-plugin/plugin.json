@@ -1,0 +1,9 @@
+{
+  "name": "project-plan",
+  "version": "1.0.0",
+  "description": "Synchronise Claude plan mode plans with project plan markdown files. Save plans to a plans/ directory and load existing plans as the basis for Claude planning mode.",
+  "author": {
+    "name": "Graham Carlyle"
+  },
+  "keywords": ["planning", "plans", "plan-mode", "project-management"]
+}
