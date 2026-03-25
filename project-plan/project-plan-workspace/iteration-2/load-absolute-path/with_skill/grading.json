@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Rejects because path is absolute (starts with /)",
+      "passed": true,
+      "evidence": "Response: 'Path rejected. The path /etc/passwd is an absolute path.' Transcript confirms: 'rejected per rule #1 (Only relative paths are accepted — reject any absolute path starting with /)'"
+    },
+    {
+      "text": "Does NOT attempt to read",
+      "passed": true,
+      "evidence": "Transcript states: 'No file I/O was performed. No plan-mode-content.md is produced since the load was refused.'"
+    },
+    {
+      "text": "Informs user why rejected",
+      "passed": true,
+      "evidence": "Response explains: 'For safety, only relative paths are accepted by the project-plan skill. Please provide a relative path instead' and gives examples."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "claims": [],
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "No suggestions, evals look solid."
+  }
+}

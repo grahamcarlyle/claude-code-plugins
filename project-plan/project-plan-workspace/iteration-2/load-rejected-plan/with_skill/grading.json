@@ -1,0 +1,42 @@
+{
+  "expectations": [
+    {
+      "text": "Warns about rejected status",
+      "passed": true,
+      "evidence": "Response states: 'The plan plans/old-api-redesign.md has status rejected' and includes the rejection reason."
+    },
+    {
+      "text": "Asks for confirmation",
+      "passed": true,
+      "evidence": "Response ends with 'Are you sure you want to load this rejected plan into plan mode? (Yes / No)'."
+    },
+    {
+      "text": "If proceeding, strips front matter and adds metadata",
+      "passed": false,
+      "evidence": "No plan-mode-content.md was produced because the response stopped at the confirmation prompt. This is correct behavior (waiting for user confirmation), but the expectation about stripping front matter and adding metadata cannot be verified since no content was loaded yet."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "claims": [
+    {
+      "claim": "The rejection reason is displayed from the plan file",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Response includes: 'Team decided REST is sufficient for our use case and GraphQL would add unnecessary complexity' which matches the plan's rejection note."
+    }
+  ],
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "If proceeding, strips front matter and adds metadata",
+        "reason": "This expectation is inherently unverifiable in a single-turn eval since the skill correctly stops at the confirmation prompt. The eval would need a multi-turn interaction (user says 'Yes') to verify this. Consider splitting into a separate eval or removing this expectation."
+      }
+    ],
+    "overall": "The 'if proceeding' expectation requires multi-turn interaction that the eval framework doesn't provide."
+  }
+}

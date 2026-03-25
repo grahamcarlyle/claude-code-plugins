@@ -1,0 +1,42 @@
+{
+  "expectations": [
+    {
+      "text": "Lists all 4 plan files",
+      "passed": true,
+      "evidence": "Response lists add-auth.md, migrate-db.md, old-api-redesign.md, new-api.md in a table — all 4 files present."
+    },
+    {
+      "text": "Shows correct statuses",
+      "passed": true,
+      "evidence": "Statuses shown: add-auth.md=draft, migrate-db.md=implemented, old-api-redesign.md=rejected, new-api.md=(none). All correct."
+    },
+    {
+      "text": "Shows first heading/title",
+      "passed": true,
+      "evidence": "Titles shown: 'Add Authentication', 'Migrate Database to Postgres', 'Old API Redesign', 'New API Design'."
+    },
+    {
+      "text": "Formatted as readable list/table",
+      "passed": true,
+      "evidence": "Output is formatted as a markdown table with File, Title, and Status columns."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "claims": [
+    {
+      "claim": "The /project-plan skill only supports save and load, not list",
+      "type": "factual",
+      "verified": false,
+      "evidence": "The old skill response states list is not a recognized operation, yet still provides the listing. This is a process concern but the result is still correct."
+    }
+  ],
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "No suggestions, evals look solid."
+  }
+}

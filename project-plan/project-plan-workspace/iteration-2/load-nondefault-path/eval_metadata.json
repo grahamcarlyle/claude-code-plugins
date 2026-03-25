@@ -1,0 +1,6 @@
+{
+  "eval_id": 4,
+  "eval_name": "load-nondefault-path",
+  "prompt": "/project-plan load docs/plans/design.md",
+  "assertions": []
+}

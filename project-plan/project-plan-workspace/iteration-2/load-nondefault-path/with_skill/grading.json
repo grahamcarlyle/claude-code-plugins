@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "Loads from docs/plans/design.md",
+      "passed": true,
+      "evidence": "Response says 'Loaded docs/plans/design.md into plan mode' and displays the System Design Document content."
+    },
+    {
+      "text": "Metadata stores FULL relative path (docs/plans/design.md, NOT just design.md)",
+      "passed": true,
+      "evidence": "plan-mode-content.md starts with '<!-- project-plan-source: docs/plans/design.md, status: draft -->' — full relative path is preserved."
+    },
+    {
+      "text": "Strips front matter",
+      "passed": true,
+      "evidence": "Neither response.md nor plan-mode-content.md contain YAML front matter delimiters or status/title fields."
+    },
+    {
+      "text": "Displays content",
+      "passed": true,
+      "evidence": "Response shows '# System Design Document', the overview, and the 4 components list."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "claims": [],
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "No suggestions, evals look solid."
+  }
+}

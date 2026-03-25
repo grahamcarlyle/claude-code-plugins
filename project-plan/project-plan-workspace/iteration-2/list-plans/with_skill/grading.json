@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "Lists all 4 plan files",
+      "passed": true,
+      "evidence": "Response lists: plans/add-auth.md, plans/migrate-db.md, plans/new-api.md, plans/old-api-redesign.md — all 4 files present."
+    },
+    {
+      "text": "Shows correct statuses",
+      "passed": true,
+      "evidence": "Statuses shown: add-auth.md [draft], migrate-db.md [implemented], old-api-redesign.md [rejected], new-api.md has dash (no status). These match expected statuses."
+    },
+    {
+      "text": "Shows first heading/title",
+      "passed": true,
+      "evidence": "Titles shown: 'Add Authentication', 'Migrate Database to Postgres', 'New API Design', 'Old API Redesign'."
+    },
+    {
+      "text": "Formatted as readable list/table",
+      "passed": true,
+      "evidence": "Output is formatted as an aligned text table inside a code block with columns for file, status, and title."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "claims": [],
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "No suggestions, evals look solid."
+  }
+}

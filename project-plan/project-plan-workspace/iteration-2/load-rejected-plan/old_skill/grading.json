@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "Warns about rejected status",
+      "passed": true,
+      "evidence": "Response states: 'Warning: The plan old-api-redesign.md has a status of rejected' and includes the rejection reason."
+    },
+    {
+      "text": "Asks for confirmation",
+      "passed": true,
+      "evidence": "Response ends with 'Are you sure you want to load it into plan mode?'"
+    },
+    {
+      "text": "If proceeding, strips front matter and adds metadata",
+      "passed": false,
+      "evidence": "No plan-mode-content.md was produced — the response correctly stopped at the confirmation prompt. This expectation cannot be verified in a single-turn eval."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "claims": [],
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "If proceeding, strips front matter and adds metadata",
+        "reason": "Same issue as with_skill — unverifiable in single-turn eval. Consider a multi-turn eval or removing this expectation."
+      }
+    ],
+    "overall": "The 'if proceeding' expectation requires multi-turn interaction."
+  }
+}

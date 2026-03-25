@@ -1,5 +1,5 @@
 ---
-status: draft
+status: implemented
 ---
 
 # Add Path Validation to project-plan Skill

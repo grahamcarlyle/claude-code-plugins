@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "Loads from docs/plans/design.md",
+      "passed": true,
+      "evidence": "Response says 'Loaded plan from docs/plans/design.md (status: draft)' and displays the System Design Document content."
+    },
+    {
+      "text": "Metadata stores FULL relative path (docs/plans/design.md, NOT just design.md)",
+      "passed": false,
+      "evidence": "plan-mode-content.md has '<!-- project-plan-source: design.md, status: draft -->' — only the bare filename 'design.md' is stored, NOT the full relative path 'docs/plans/design.md'."
+    },
+    {
+      "text": "Strips front matter",
+      "passed": true,
+      "evidence": "Neither response.md nor plan-mode-content.md contain YAML front matter."
+    },
+    {
+      "text": "Displays content",
+      "passed": true,
+      "evidence": "Response shows '# System Design Document', the overview, and the 4 components list."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  },
+  "claims": [],
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "No suggestions, evals look solid. This eval correctly catches the old skill's failure to store full relative paths."
+  }
+}

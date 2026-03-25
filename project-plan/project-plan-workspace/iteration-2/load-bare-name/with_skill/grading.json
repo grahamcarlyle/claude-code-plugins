@@ -1,0 +1,40 @@
+{
+  "expectations": [
+    {
+      "text": "Resolves bare name to plans/add-auth.md",
+      "passed": true,
+      "evidence": "Response says 'Loaded plan from plans/add-auth.md' and plan-mode-content.md has metadata comment referencing 'plans/add-auth.md'."
+    },
+    {
+      "text": "Strips YAML front matter",
+      "passed": true,
+      "evidence": "Neither response.md nor plan-mode-content.md contain any YAML front matter (no '---' delimiters with status/title fields). Only the markdown content is shown."
+    },
+    {
+      "text": "Adds metadata comment with path and status",
+      "passed": true,
+      "evidence": "plan-mode-content.md starts with '<!-- project-plan-source: plans/add-auth.md, status: draft -->'."
+    },
+    {
+      "text": "Displays content without metadata comment",
+      "passed": true,
+      "evidence": "response.md shows the plan content (heading, overview, steps) without the HTML metadata comment."
+    },
+    {
+      "text": "Keeps existing heading",
+      "passed": true,
+      "evidence": "Both response.md and plan-mode-content.md contain '# Add Authentication' as the heading."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  "claims": [],
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "No suggestions, evals look solid."
+  }
+}

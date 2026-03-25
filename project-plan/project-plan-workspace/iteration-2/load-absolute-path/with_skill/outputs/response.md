@@ -1,0 +1,1 @@
+**Path rejected.** The path `/etc/passwd` is an absolute path. For safety, only relative paths are accepted by the project-plan skill. Please provide a relative path instead, such as `plans/my-plan.md`, `my-plan.md`, or `my-plan`. To see available plans, run `/project-plan list`.

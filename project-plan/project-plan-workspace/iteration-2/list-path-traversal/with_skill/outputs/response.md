@@ -1,0 +1,1 @@
+**Path rejected.** The path `../../` resolves outside the project root. For security, all scan paths must remain within the project directory. To list plans in the default location, run `/project-plan list` without a path argument.

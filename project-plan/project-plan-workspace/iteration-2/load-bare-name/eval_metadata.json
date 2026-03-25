@@ -1,0 +1,6 @@
+{
+  "eval_id": 2,
+  "eval_name": "load-bare-name",
+  "prompt": "/project-plan load add-auth",
+  "assertions": []
+}

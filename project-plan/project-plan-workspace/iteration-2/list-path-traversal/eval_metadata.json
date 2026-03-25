@@ -1,0 +1,6 @@
+{
+  "eval_id": 7,
+  "eval_name": "list-path-traversal",
+  "prompt": "/project-plan list ../../",
+  "assertions": []
+}

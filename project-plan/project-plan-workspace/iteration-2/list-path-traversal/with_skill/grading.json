@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Rejects scan path as unsafe",
+      "passed": true,
+      "evidence": "Response: 'Path rejected. The path ../../ resolves outside the project root.' Transcript confirms path safety validation rejected the operation."
+    },
+    {
+      "text": "Does NOT scan directory",
+      "passed": true,
+      "evidence": "Transcript states: 'No directory was scanned. No files were listed.'"
+    },
+    {
+      "text": "Informs user why rejected",
+      "passed": true,
+      "evidence": "Response explains: 'For security, all scan paths must remain within the project directory' and suggests running '/project-plan list' without a path argument."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "claims": [],
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "No suggestions, evals look solid."
+  }
+}

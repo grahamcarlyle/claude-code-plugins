@@ -1,0 +1,45 @@
+{
+  "expectations": [
+    {
+      "text": "Resolves bare name to plans/add-auth.md",
+      "passed": true,
+      "evidence": "The plan content was loaded successfully showing '# Add Authentication' with the correct steps, indicating plans/add-auth.md was resolved."
+    },
+    {
+      "text": "Strips YAML front matter",
+      "passed": true,
+      "evidence": "Neither response.md nor plan-mode-content.md contain YAML front matter. Only markdown content is present."
+    },
+    {
+      "text": "Adds metadata comment with path and status",
+      "passed": false,
+      "evidence": "plan-mode-content.md has '<!-- project-plan-source: add-auth.md, status: draft -->' — the path is 'add-auth.md' (bare name) rather than the full relative path 'plans/add-auth.md'."
+    },
+    {
+      "text": "Displays content without metadata comment",
+      "passed": true,
+      "evidence": "response.md shows the plan content without any HTML metadata comment."
+    },
+    {
+      "text": "Keeps existing heading",
+      "passed": true,
+      "evidence": "Both response.md and plan-mode-content.md contain '# Add Authentication'."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  },
+  "claims": [],
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Adds metadata comment with path and status",
+        "reason": "This expectation says 'with path and status' but doesn't specify the exact path format. The old skill stores 'add-auth.md' instead of 'plans/add-auth.md'. The load-nondefault-path eval explicitly tests for FULL relative path. Consider making this expectation more explicit about requiring the full resolved path."
+      }
+    ],
+    "overall": "The path-in-metadata expectation could be more explicit about what constitutes the correct path value."
+  }
+}

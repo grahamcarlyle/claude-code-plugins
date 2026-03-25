@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "Rejects scan path as unsafe",
+      "passed": false,
+      "evidence": "Response states: 'The old skill does not have a list command' and 'the old skill has NO path validation logic.' The path was not rejected as unsafe — the old skill simply doesn't support the list command. The response notes the old skill is inherently constrained to plans/ for listing, but this is by accident, not by design."
+    },
+    {
+      "text": "Does NOT scan directory",
+      "passed": true,
+      "evidence": "The old skill did not scan ../../ — but only because it doesn't support the list command and always looks in plans/. The response does list plans from the plans/ directory, but not from the traversal path."
+    },
+    {
+      "text": "Informs user why rejected",
+      "passed": false,
+      "evidence": "The response does not inform the user that the path is unsafe. It explains the old skill doesn't have a list command and notes the lack of path validation as an aside. No security-oriented rejection message is given."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "claims": [
+    {
+      "claim": "The old skill's list behavior inherently constrains to plans/, so traversal doesn't cause leakage for list specifically",
+      "type": "process",
+      "verified": true,
+      "evidence": "Response states: 'the design inherently constrains to plans/, so the traversal doesn't cause leakage' for the list operation specifically."
+    },
+    {
+      "claim": "The old skill would be vulnerable to path traversal on load operations",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Response states: 'if this were a load ../../plans/some-file.md, the old skill WOULD be vulnerable.' Consistent with findings from load-path-traversal old_skill run."
+    }
+  ],
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Does NOT scan directory",
+        "reason": "This passed for the old skill, but only because the old skill doesn't support list at all — not because of any security check. The pass is technically correct but could be misleading about the old skill's security posture."
+      }
+    ],
+    "overall": "The 'does not scan' expectation passes for the wrong reason in the old skill case. Consider adding an expectation that checks for explicit security-based rejection rather than just non-scanning."
+  }
+}

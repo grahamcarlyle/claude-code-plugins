@@ -1,0 +1,6 @@
+{
+  "eval_id": 6,
+  "eval_name": "load-absolute-path",
+  "prompt": "/project-plan load /etc/passwd",
+  "assertions": []
+}
