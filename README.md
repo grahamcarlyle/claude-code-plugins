@@ -13,7 +13,7 @@ Add this marketplace to Claude Code:
 Then install individual plugins:
 
 ```
-/plugin install <plugin-name>@claude-code-plugins
+/plugin install <plugin-name>@grahamcarlyle-plugins
 ```
 
 ## Plugins

@@ -7,14 +7,14 @@ Persist Claude Code plan-mode plans as markdown files in your project. Plans are
 If you've added the marketplace:
 
 ```
-/plugin install project-plan@claude-code-plugins
+/plugin install project-plan@grahamcarlyle-plugins
 ```
 
 Or install directly:
 
 ```
 /plugin marketplace add grahamcarlyle/claude-code-plugins
-/plugin install project-plan@claude-code-plugins
+/plugin install project-plan@grahamcarlyle-plugins
 ```
 
 ## Commands
