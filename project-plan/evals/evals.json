@@ -23,7 +23,8 @@
         "Strips YAML front matter before writing to plan mode",
         "Adds metadata comment with original path and status: <!-- project-plan-source: plans/add-auth.md, status: draft -->",
         "Displays the plan content to the user (without metadata comment)",
-        "Keeps the existing top-level heading '# Add Authentication'"
+        "Keeps the existing top-level heading '# Add Authentication'",
+        "Appends a reminder comment about saving back with /project-plan save and updating status to implemented after implementation"
       ]
     },
     {
@@ -46,7 +47,8 @@
         "Loads the file from docs/plans/design.md (non-default location)",
         "Metadata comment stores the full relative path: <!-- project-plan-source: docs/plans/design.md, status: draft -->",
         "Strips YAML front matter before writing to plan mode",
-        "Displays the plan content to the user"
+        "Displays the plan content to the user",
+        "Appends a reminder comment about saving back with /project-plan save and updating status to implemented after implementation"
       ]
     },
     {

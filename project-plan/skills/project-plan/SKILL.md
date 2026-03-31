@@ -84,6 +84,9 @@ If no command is clear from context, ask the user which operation they want.
      ```
      For example: `<!-- project-plan-source: plans/add-auth.md, status: draft -->`
      Store the relative path (not just filename) so non-default locations survive round-trips.
+   - Append a reminder comment at the end of the plan content:
+     ```
+     <!-- reminder: This plan was loaded from a project plan file. After implementing this plan, save it back to the project with `/project-plan save` and update its status to `implemented`. -->
 
 5. **Write to the plan mode file** (the path from the plan mode system message under `~/.claude/plans/`). Order: metadata comment, then heading, then plan body. Display the plan content to the user (without the metadata comment) and tell them they can now review, modify, or approve it in plan mode.
 
